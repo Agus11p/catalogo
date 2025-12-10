@@ -1,60 +1,81 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- Productos: editá / duplicá aquí ----
+  // Fijar modo oscuro
+  try { document.documentElement.style.colorScheme = 'dark'; document.body.classList.add('dark'); } catch(e){}
+
+  // --- Productos de ejemplo (3 ficticios) ---
   const products = [
     {
       id: 1,
-      title: "SHYOSUCCE Ventilador portátil",
-      desc: "Ventilador de mano con velocidades ajustables, recargable y compacto. Ideal para el hogar o la oficina.",
-      price: "€14.99",
-      img: "https://m.media-amazon.com/images/I/71z4vVmpMlL._AC_SL1500_.jpg",
-      url: "https://www.amazon.es/SHYOSUCCE-ventilador-velocidades-ajustables-taschenventilador/dp/B0DZX9MHKP/?tag=catalogo11p-21"
+      title: "Auriculares Pro Zeta",
+      desc: "Auriculares inalámbricos con cancelación activa de ruido, 30h de batería y carga rápida.",
+      price: "€89.99",
+      img: "https://images.unsplash.com/photo-1518444022748-2f7d7b9f7d6f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b0c0b2a7f4c8b0e6c9f3a2a7e4b5c6d",
+      url: "https://www.amazon.com/s?k=wireless+headphones"
+    },
+    {
+      id: 2,
+      title: "Smartwatch Nexus S",
+      desc: "Monitor de ritmo cardiaco, GPS integrado y esferas personalizables. Resistente al agua 5ATM.",
+      price: "€149.90",
+      img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d1b8a9f2f8b1d2c9c3e9a7b6c8d4e5f",
+      url: "https://www.amazon.com/s?k=smartwatch"
+    },
+    {
+      id: 3,
+      title: "Cafetera Barista Mini",
+      desc: "Cafetera espresso compacta 15 bar, depósito extraíble y compatible con cápsulas y café molido.",
+      price: "€129.00",
+      img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d",
+      url: "https://www.amazon.com/s?k=espresso+machine"
     }
-    // agregá más objetos para poblar el catálogo (>100)
   ];
 
+  // DOM refs
   const grid = document.getElementById('productGrid');
-  const year = document.getElementById('year');
-  const searchInput = document.getElementById('search');
+  const stats = document.getElementById('stats');
+  const searchInput = document.getElementById('searchInput');
   const clearBtn = document.getElementById('clearSearch');
   const loadMoreBtn = document.getElementById('loadMore');
+  const noResults = document.getElementById('noResults');
+  const year = document.getElementById('year');
   year.textContent = new Date().getFullYear();
 
-  // Forcing dark mode (no toggle)
-  try {
-    document.documentElement.style.colorScheme = 'dark';
-    document.body.classList.add('dark');
-  } catch (e) { /* silent */ }
-
-  // Paginación simple
+  // Pagination config (useful si agregás muchos productos)
   const PAGE_SIZE = 12;
-  let currentOffset = 0;
-  let currentList = products.slice();
+  let offset = 0;
+  let activeList = products.slice();
 
-  // Init Fuse (fuzzy search) - tuned for larger catalogs
+  // Fuse.js init (fuzzy search)
   const fuse = new Fuse(products, {
     keys: [
-      { name: 'title', weight: 0.7 },
-      { name: 'desc', weight: 0.3 }
+      { name: 'title', weight: 0.75 },
+      { name: 'desc', weight: 0.25 }
     ],
-    threshold: 0.36,
+    threshold: 0.35,
     distance: 200,
     minMatchCharLength: 2,
-    ignoreLocation: true,
-    includeScore: true
+    ignoreLocation: true
   });
 
-  // util: escape
+  // util: escape minimal
   function esc(s){ return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  function renderProducts(list, reset = true) {
-    if(reset) {
-      currentOffset = 0;
+  function render(list, reset = true){
+    if(reset){ offset = 0; grid.innerHTML = ''; }
+    const slice = list.slice(offset, offset + PAGE_SIZE);
+    if(slice.length === 0 && offset === 0){
+      noResults.hidden = false;
       grid.innerHTML = '';
+      stats.textContent = `0 productos`;
+      loadMoreBtn.hidden = true;
+      return;
+    } else {
+      noResults.hidden = true;
     }
-    const slice = list.slice(currentOffset, currentOffset + PAGE_SIZE);
+
     const html = slice.map(p => `
       <a class="card-link" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">
-        <div class="card" aria-labelledby="title-${p.id}">
+        <article class="card" aria-labelledby="title-${p.id}">
           <div class="card-media">
             <img loading="lazy" src="${esc(p.img)}" alt="${esc(p.title)}">
           </div>
@@ -63,50 +84,39 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="card-desc">${esc(p.desc)}</p>
             <div class="card-bottom">
               <div class="price">${esc(p.price)}</div>
-              <div class="buy">Comprar</div>
+              <div><button class="btn btn-cta" type="button">Comprar en Amazon</button></div>
             </div>
           </div>
-        </div>
+        </article>
       </a>
     `).join('');
     grid.insertAdjacentHTML('beforeend', html);
-    currentOffset += slice.length;
-    loadMoreBtn.style.display = (currentOffset < list.length) ? 'inline-block' : 'none';
+    offset += slice.length;
+    stats.textContent = `${Math.min(offset, list.length)} de ${list.length} productos`;
+    loadMoreBtn.hidden = offset >= list.length;
   }
 
-  // Debounce
-  function debounce(fn, wait) {
+  // Debounce helper
+  function debounce(fn, wait=200){
     let t;
-    return (...args) => { clearTimeout(t); t = setTimeout(()=>fn(...args), wait); };
+    return (...args)=>{ clearTimeout(t); t = setTimeout(()=>fn(...args), wait); };
   }
 
-  // Search handler (Fuse + fallback substring)
-  const doSearch = debounce(() => {
+  // Search handler
+  const doSearch = debounce(()=>{
     const q = searchInput.value.trim();
-    if (!q) {
-      currentList = products.slice();
-      renderProducts(currentList, true);
-      return;
-    }
-    // first try fuzzy search
-    const f = fuse.search(q, { limit: 500 }).map(r => r.item);
-    // if fuzzy returns nothing, fallback to substring search (helps short tokens)
-    const results = (f.length) ? f : products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q.toLowerCase()));
-    currentList = results;
-    renderProducts(currentList, true);
+    if(!q){ activeList = products.slice(); render(activeList, true); return; }
+    const f = fuse.search(q, { limit: 1000 }).map(r => r.item);
+    const results = f.length ? f : products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q.toLowerCase()));
+    activeList = results;
+    render(activeList, true);
   }, 180);
 
   searchInput.addEventListener('input', doSearch);
-  clearBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    currentList = products.slice();
-    renderProducts(currentList, true);
-    searchInput.focus();
-  });
+  clearBtn.addEventListener('click', () => { searchInput.value=''; activeList = products.slice(); render(activeList, true); searchInput.focus(); });
 
-  loadMoreBtn.addEventListener('click', () => renderProducts(currentList, false));
+  loadMoreBtn.addEventListener('click', ()=> render(activeList, false));
 
-  // Inicial render
-  renderProducts(currentList);
-
+  // initial render
+  render(activeList, true);
 });

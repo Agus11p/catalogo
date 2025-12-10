@@ -1,211 +1,89 @@
-:root {
-  --bg: #06070a;
-  --panel: #07111a;
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+:root{
+  --bg-0: #05060a;
+  --bg-1: #0b1220;
+  --panel: #0f1724;
+  --glass: rgba(255,255,255,0.02);
   --text: #e7eef8;
   --muted: #9aa6b2;
   --accent: #ffb86b;
   --accent-2: #f59e0b;
   --radius: 12px;
-  --shadow: 0 10px 30px rgba(0,0,0,0.7);
+  --shadow: 0 14px 40px rgba(2,8,23,0.6);
+  --glass-border: rgba(255,255,255,0.03);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color-scheme: dark;
+  font-size: 15px;
 }
 
-html, body {
-  margin: 0;
-  background:
-    radial-gradient(800px 200px at 10% 10%, rgba(255,184,107,0.02), transparent),
-    linear-gradient(180deg, var(--bg), #04060a);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100%;
-}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:
+  radial-gradient(800px 240px at 10% 10%, rgba(255,184,107,0.02), transparent),
+  linear-gradient(180deg,var(--bg-0),var(--bg-1));
+  color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
-/* ensure fixed dark theme (no light fallbacks) */
-body { background-color: #04050a; }
-
-/* layout */
-.wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
+.wrap{max-width:1200px;margin:0 auto;padding:0 18px}
 
 /* Header */
-.site-header {
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-  position: sticky;
-  top: 0;
+.site-header{
+  position:sticky;top:0;z-index:30;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.02);
   backdrop-filter: blur(6px);
-  z-index: 50;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
 }
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.brand h1 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.2px;
-}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;flex-direction:column}
+.logo{font-size:18px;font-weight:800;letter-spacing:0.6px}
+.tag{font-size:12px;color:var(--muted);margin-top:3px}
 
 /* Search */
-.header-actions { display:flex; gap:12px; align-items:center; }
-.search { position: relative; }
-.search input {
-  padding: 10px 40px 10px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.04);
-  font-size: 14px;
-  width: 360px;
-  background: rgba(255,255,255,0.02);
-  color: var(--text);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+.header-actions{display:flex;align-items:center;gap:12px}
+.search{position:relative}
+.search input{
+  width:360px;padding:10px 40px 10px 14px;border-radius:999px;border:1px solid var(--glass-border);
+  background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.02));
+  color:var(--text);outline:none;font-size:14px;box-shadow:0 8px 24px rgba(2,8,23,0.45);
 }
-.search input::placeholder { color: rgba(230,238,246,0.36); }
-#clearSearch {
-  position: absolute;
-  right: 6px;
-  background: transparent;
-  border: 0;
-  font-size: 16px;
-  cursor: pointer;
-  color: var(--muted);
-}
+.search input::placeholder{color:rgba(230,238,246,0.38)}
+.clear{position:absolute;right:6px;top:6px;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:14px;padding:6px;border-radius:8px}
 
-/* Theme toggle */
-.theme-toggle {
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid rgba(255,255,255,0.03);
-  padding: 8px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+/* Hero */
+.hero{padding:26px 0 6px}
+.hero h1{margin:0;font-size:22px}
+.lead{margin:6px 0 0;color:var(--muted)}
+
+/* Stats */
+.controls{padding:8px 0}
+.stats{color:var(--muted);font-size:13px}
 
 /* Grid / Cards */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-  padding: 28px 0;
-  z-index: 1;
+.product-area{padding:12px 0 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card-link{display:block;text-decoration:none;color:inherit}
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0.02));
+  border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease, box-shadow .18s ease;
+  border:1px solid var(--glass-border);box-shadow:var(--shadow);
 }
+.card:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(2,8,23,0.68)}
+.card-media{height:160px;background:linear-gradient(180deg, rgba(0,0,0,0.04), transparent);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-media img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(0.98) saturate(0.95) brightness(0.96)}
+.card-content{padding:14px;display:flex;flex-direction:column;gap:8px}
+.card-title{font-size:15px;margin:0;font-weight:700;color:var(--text)}
+.card-desc{font-size:13px;color:var(--muted);margin:0;flex:1;line-height:1.35}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.price{font-weight:800;color:var(--text);font-size:15px}
 
-.card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700;font-size:13px}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
+.btn-cta{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#0b0b0b;box-shadow:0 12px 30px rgba(245,158,11,0.12)}
+.btn-cta:hover{transform:translateY(-2px)}
 
-.card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-  border: 1px solid rgba(255,255,255,0.02);
-}
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
-}
-
-.card-media {
-  height: 180px;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: contrast(0.98) saturate(0.95) brightness(0.98);
-}
-
-.card-content {
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.card-title {
-  font-size: 15px;
-  font-weight: 700;
-  margin: 0;
-  color: var(--text);
-}
-
-.card-desc {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0;
-  flex: 1;
-  line-height: 1.35;
-}
-
-.card-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 8px;
-}
-
-.price {
-  font-weight: 800;
-  color: var(--text);
-}
-
-/* Call to action */
-.buy {
-  background: linear-gradient(180deg, var(--accent), var(--accent-2));
-  color: #0b0b0b;
-  padding: 9px 14px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 800;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 8px 20px rgba(245,158,11,0.12);
-  transition: transform .12s ease;
-}
-.buy:hover { transform: translateY(-2px); }
-
-/* Load more */
-.load-more-wrap { text-align:center; padding-bottom: 28px; }
+/* Empty state */
+.empty{margin-top:18px;color:var(--muted);text-align:center;padding:20px}
 
 /* Footer */
-.site-footer {
-  padding: 18px 0;
-  color: var(--muted);
-  border-top: 1px solid rgba(255,255,255,0.02);
-  margin-top: 30px;
-}
-.hint {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 14px 0;
-}
+.site-footer{padding:18px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:30px}
 
 /* Responsive */
-@media (max-width: 920px) {
-  .search input { width: 260px; }
-}
-@media (max-width: 720px) {
-  .search input { width: 160px; }
-  .card-media { height: 160px; }
-}
+@media (max-width:920px){.search input{width:260px}}
+@media (max-width:720px){.search input{width:160px}.card-media{height:140px}}

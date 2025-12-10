@@ -7,40 +7,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="wrap header-inner">
-      <div class="brand">
-        <h1>Catálogo Profesional</h1>
+      <div class="brand" aria-hidden="false">
+        <strong class="logo">Catálogo</strong>
+        <span class="tag">Profesional · Modo oscuro</span>
       </div>
 
-      <div class="header-actions">
-        <label class="search">
-          <input id="search" type="search" placeholder="Buscar productos, marcas o descripciones..." aria-label="Buscar productos">
-          <button id="clearSearch" title="Borrar búsqueda" aria-label="Borrar búsqueda">&times;</button>
+      <div class="header-actions" role="search">
+        <label class="search" for="searchInput">
+          <input id="searchInput" type="search" placeholder="Buscar productos, marcas o características..." aria-label="Buscar productos">
+          <button id="clearSearch" class="clear" aria-label="Borrar búsqueda">✕</button>
         </label>
-        <!-- MODO OSCURO FIJO: no se muestra botón de cambio -->
       </div>
     </div>
   </header>
 
-  <main class="wrap content" id="productos">
-    <p class="hint">Para agregar/editar productos: abrí <code>main.js</code> y modificá el arreglo <code>products</code>.</p>
-    <section class="grid" id="productGrid" aria-live="polite">
-      <!-- Las tarjetas se renderizan desde main.js -->
+  <main class="wrap main" id="main" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Catálogo profesional</h1>
+      <p class="lead">Explora productos seleccionados. Toca "Comprar en Amazon" para ir al sitio y completar la compra.</p>
     </section>
 
-    <div class="load-more-wrap">
-      <button id="loadMore" class="buy" style="display:none">Cargar más</button>
-    </div>
+    <section class="controls wrap">
+      <div class="stats" id="stats" aria-live="polite"></div>
+    </section>
+
+    <section class="wrap product-area">
+      <div id="productGrid" class="grid" aria-live="polite"></div>
+
+      <div class="empty" id="noResults" hidden>Sin resultados. Probá otra búsqueda.</div>
+
+      <div class="load-more-wrap">
+        <button id="loadMore" class="btn btn-cta" hidden>Cargar más</button>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="wrap">
-      <small>© <span id="year"></span> Catálogo — Enlaces de Afiliado</small>
+      <small>© <span id="year"></span> Catálogo — Enlaces a Amazon</small>
     </div>
   </footer>
 
-  <!-- Fuse.js para búsqueda fuzzy -->
+  <!-- Fuse.js (fuzzy search) -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
   <script src="main.js" defer></script>
 </body>
