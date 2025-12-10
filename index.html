@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Catálogo de Productos</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catálogo de Productos</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="wrap header-inner">
-            <div class="brand">
-                <h1>Catálogo Profesional</h1>
-            </div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <h1>Catálogo Profesional</h1>
+      </div>
+      <div class="header-actions">
+        <label class="search">
+          <input id="search" type="search" placeholder="Buscar productos..." aria-label="Buscar productos">
+          <button id="clearSearch" title="Borrar búsqueda" aria-label="Borrar búsqueda">&times;</button>
+        </label>
+      </div>
+    </div>
+  </header>
 
-            <div class="header-actions">
-                <label class="search">
-                    <input id="search" type="search" placeholder="Buscar productos..." aria-label="Buscar productos">
-                    <button id="clearSearch" title="Borrar búsqueda" aria-label="Borrar búsqueda">&times;</button>
-                </label>
-            </div>
-        </div>
-    </header>
+  <main class="wrap content" id="productos">
+    <p class="hint">Para agregar/editar productos: abrí <code>main.js</code> y modificá el arreglo <code>products</code>.</p>
+    <section class="grid" id="productGrid" aria-live="polite">
+      <!-- Las tarjetas se renderizan desde main.js -->
+    </section>
+  </main>
 
-    <main class="wrap content" id="productos">
-        <p class="hint">Para agregar/editar productos, abrí <code>main.js</code> y modificá el arreglo <code>products</code>.</p>
+  <footer class="site-footer">
+    <div class="wrap">
+      <small>© <span id="year"></span> Catálogo — Enlaces de Afiliado</small>
+    </div>
+  </footer>
 
-        <section class="grid" id="productGrid" aria-live="polite">
-            <!-- Las tarjetas se renderizan desde main.js -->
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="wrap">
-            <small>© <span id="year"></span> Catálogo — Enlaces de Afiliado</small>
-        </div>
-    </footer>
-
-    <script src="main.js" defer></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
