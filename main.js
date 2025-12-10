@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function escapeHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
     function renderProducts(list){
-        grid.innerHTML = list.map(p => `
+    grid.innerHTML = list.map(p => `
+        <a class="card-link" href="${p.url}" target="_blank" rel="noopener noreferrer">
             <article class="card" data-id="${p.id}">
                 <div class="card-media">
-                    <img loading="lazy" src="${p.img}" alt="${escapeHtml(p.title)}" class="product-img">
+                    <img loading="lazy" src="${p.img}" alt="${escapeHtml(p.title)}">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">${escapeHtml(p.title)}</h3>
@@ -32,12 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="meta">${escapeHtml(p.meta)}</div>
                         </div>
                         <div>
-                            <a class="buy" href="${p.url}" target="_blank" rel="noopener noreferrer">Comprar en Amazon</a>
+                            <span class="buy">Comprar en Amazon</span>
                         </div>
                     </div>
                 </div>
             </article>
-        `).join('');
+        </a>
+    `).join('');
 
         // modal de imagen
         const modal = document.getElementById("imgModal");
