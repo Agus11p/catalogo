@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       price: "€599.00",
       img: "https://m.media-amazon.com/images/I/B09N24BHKQ._AC_SL1500_.jpg",
       url: "https://www.amazon.es/Quest-512Gb-Realidad-mixta-revolucionaria/dp/B09N24BHKQ?tag=catalogo11p-21"
-},
-
+    },
     {
       id: 2,
       title: "Smartwatch Nexus S",
