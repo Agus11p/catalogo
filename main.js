@@ -17,20 +17,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search');
   const clearBtn = document.getElementById('clearSearch');
   const loadMoreBtn = document.getElementById('loadMore');
-  const themeToggle = document.getElementById('themeToggle');
   year.textContent = new Date().getFullYear();
+
+  // Forcing dark mode (no toggle)
+  try {
+    document.documentElement.style.colorScheme = 'dark';
+    document.body.classList.add('dark');
+  } catch (e) { /* silent */ }
 
   // Paginación simple
   const PAGE_SIZE = 12;
   let currentOffset = 0;
   let currentList = products.slice();
 
-  // Init Fuse (fuzzy search)
+  // Init Fuse (fuzzy search) - tuned for larger catalogs
   const fuse = new Fuse(products, {
-    keys: ['title', 'desc'],
-    threshold: 0.35,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'desc', weight: 0.3 }
+    ],
+    threshold: 0.36,
     distance: 200,
-    minMatchCharLength: 2
+    minMatchCharLength: 2,
+    ignoreLocation: true,
+    includeScore: true
   });
 
   // util: escape
@@ -70,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return (...args) => { clearTimeout(t); t = setTimeout(()=>fn(...args), wait); };
   }
 
-  // Search handler
+  // Search handler (Fuse + fallback substring)
   const doSearch = debounce(() => {
     const q = searchInput.value.trim();
     if (!q) {
@@ -78,10 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
       renderProducts(currentList, true);
       return;
     }
-    const results = fuse.search(q, { limit: 200 }).map(r => r.item);
+    // first try fuzzy search
+    const f = fuse.search(q, { limit: 500 }).map(r => r.item);
+    // if fuzzy returns nothing, fallback to substring search (helps short tokens)
+    const results = (f.length) ? f : products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q.toLowerCase()));
     currentList = results;
     renderProducts(currentList, true);
-  }, 200);
+  }, 180);
 
   searchInput.addEventListener('input', doSearch);
   clearBtn.addEventListener('click', () => {
@@ -92,16 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   loadMoreBtn.addEventListener('click', () => renderProducts(currentList, false));
-
-  // Theme toggle: guarda en localStorage
-  function applyTheme(dark) {
-    document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
-    document.body.classList.toggle('dark', !!dark);
-    themeToggle.textContent = dark ? '☀️' : '🌙';
-    localStorage.setItem('catalog_theme_dark', dark ? '1' : '0');
-  }
-  themeToggle.addEventListener('click', () => applyTheme(localStorage.getItem('catalog_theme_dark') !== '1'));
-  applyTheme(localStorage.getItem('catalog_theme_dark') === '1');
 
   // Inicial render
   renderProducts(currentList);

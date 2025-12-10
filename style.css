@@ -1,24 +1,32 @@
 :root {
-  --bg: #0b1220;
-  --panel: #0f1724;
+  --bg: #06070a;
+  --panel: #07111a;
   --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  --text: #e6eef6;
+  --text: #e7eef8;
   --muted: #9aa6b2;
   --accent: #ffb86b;
   --accent-2: #f59e0b;
   --radius: 12px;
-  --shadow: 0 10px 30px rgba(2,8,23,0.6);
+  --shadow: 0 10px 30px rgba(0,0,0,0.7);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color-scheme: dark;
 }
 
 html, body {
   margin: 0;
-  background: radial-gradient(800px 200px at 10% 10%, rgba(255,184,107,0.02), transparent),
-              linear-gradient(180deg, var(--bg), #06111a);
+  background:
+    radial-gradient(800px 200px at 10% 10%, rgba(255,184,107,0.02), transparent),
+    linear-gradient(180deg, var(--bg), #04060a);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
 }
+
+/* ensure fixed dark theme (no light fallbacks) */
+body { background-color: #04050a; }
+
+/* layout */
 .wrap {
   max-width: 1200px;
   margin: 0 auto;
@@ -30,6 +38,10 @@ html, body {
   padding: 18px 0;
   border-bottom: 1px solid rgba(255,255,255,0.03);
   background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(6px);
+  z-index: 50;
 }
 .header-inner {
   display: flex;
@@ -41,23 +53,23 @@ html, body {
   font-size: 20px;
   font-weight: 700;
   color: var(--text);
+  letter-spacing: 0.2px;
 }
 
 /* Search */
 .header-actions { display:flex; gap:12px; align-items:center; }
-.search {
-  position: relative;
-}
+.search { position: relative; }
 .search input {
   padding: 10px 40px 10px 14px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.04);
   font-size: 14px;
-  width: 320px;
+  width: 360px;
   background: rgba(255,255,255,0.02);
   color: var(--text);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
 }
-.search input::placeholder { color: rgba(230,238,246,0.45); }
+.search input::placeholder { color: rgba(230,238,246,0.36); }
 #clearSearch {
   position: absolute;
   right: 6px;
@@ -81,7 +93,7 @@ html, body {
 /* Grid / Cards */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   padding: 28px 0;
   z-index: 1;
@@ -105,20 +117,23 @@ html, body {
 }
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(2,8,23,0.6);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
 }
 
 .card-media {
   height: 180px;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 .card-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: contrast(0.98) saturate(0.95);
+  filter: contrast(0.98) saturate(0.95) brightness(0.98);
 }
 
 .card-content {
@@ -140,6 +155,7 @@ html, body {
   color: var(--muted);
   margin: 0;
   flex: 1;
+  line-height: 1.35;
 }
 
 .card-bottom {
@@ -154,16 +170,20 @@ html, body {
   color: var(--text);
 }
 
+/* Call to action */
 .buy {
   background: linear-gradient(180deg, var(--accent), var(--accent-2));
-  color: #111;
-  padding: 8px 12px;
-  border-radius: 8px;
+  color: #0b0b0b;
+  padding: 9px 14px;
+  border-radius: 10px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   border: none;
+  box-shadow: 0 8px 20px rgba(245,158,11,0.12);
+  transition: transform .12s ease;
 }
+.buy:hover { transform: translateY(-2px); }
 
 /* Load more */
 .load-more-wrap { text-align:center; padding-bottom: 28px; }
@@ -175,7 +195,6 @@ html, body {
   border-top: 1px solid rgba(255,255,255,0.02);
   margin-top: 30px;
 }
-
 .hint {
   font-size: 13px;
   color: var(--muted);
@@ -183,6 +202,9 @@ html, body {
 }
 
 /* Responsive */
+@media (max-width: 920px) {
+  .search input { width: 260px; }
+}
 @media (max-width: 720px) {
   .search input { width: 160px; }
   .card-media { height: 160px; }
