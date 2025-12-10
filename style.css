@@ -31,7 +31,7 @@ html,body{height:100%;margin:0;background:
 .scene { display:block; }
 .tree { position:fixed; left:28px; bottom:18px; width:160px; height:auto; opacity:0.92; transform:translateZ(0); filter:drop-shadow(0 8px 18px rgba(0,0,0,0.6)); }
 
-/* Snowflakes (inserta con JS) */
+/* Snow: mover por encima del contenido, pero sin bloquear clicks */
 .snowflake{
     position:fixed;
     top:-10vh;
@@ -40,19 +40,14 @@ html,body{height:100%;margin:0;background:
     user-select:none;
     pointer-events:none;
     will-change: transform, opacity;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+    text-shadow: 0 1px 6px rgba(0,0,0,0.45);
     font-size: 12px;
     animation-name: fall, sway;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-}
-@keyframes fall {
-    to { transform: translateY(120vh); opacity: .9; }
-}
-@keyframes sway {
-    0%{ transform: translateX(0) }
-    50%{ transform: translateX(12px) }
-    100%{ transform: translateX(0) }
+    z-index: 4;              /* por encima del contenido */
+    mix-blend-mode: screen;  /* mejor contraste sobre fondos oscuros */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.45)) blur(0.2px);
 }
 
 /* elevar contenido sobre la escena */
