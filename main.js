@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "Cancelación de ruido, hasta 30h de batería y Bluetooth 5.2.",
             price: "$59.99",
             meta: "Envío desde Amazon",
-            img: "https://via.placeholder.com/800x450?text=Auriculares+XYZ",
+            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Auriculares+XYZ",
             url: "https://www.amazon.com/s?k=auriculares+inalambricos"
         },
         {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "Rastreo de actividad, pulsómetro y resistencia 5ATM.",
             price: "$79.90",
             meta: "Oferta por tiempo limitado",
-            img: "https://via.placeholder.com/800x450?text=Smartwatch+A1",
+            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Smartwatch+A1",
             url: "https://www.amazon.com/s?k=smartwatch"
         },
         {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "15 bar, depósito removible y soporte para cápsulas.",
             price: "$129.00",
             meta: "En stock",
-            img: "https://via.placeholder.com/800x450?text=Cafetera+Espresso",
+            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Cafetera+Espresso",
             url: "https://www.amazon.com/s?k=cafetera+espresso"
         },
         {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "Resistente al agua, compartimento para laptop y diseño ergonómico.",
             price: "$39.50",
             meta: "Envío gratis",
-            img: "https://via.placeholder.com/800x450?text=Mochila+20L",
+            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Mochila+20L",
             url: "https://www.amazon.com/s?k=mochila+urbana"
         }
     ];
@@ -83,6 +83,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderProducts(products);
+
+    // ---- Snow generation (decorative) ----
+    const snowContainer = document.getElementById('snow');
+    if (snowContainer) {
+        const flakes = 36; // ajustar para menos/más nieve
+        const chars = ['❆','❅','✻','✽'];
+        for (let i = 0; i < flakes; i++) {
+            const s = document.createElement('div');
+            s.className = 'snowflake';
+            const size = 8 + Math.round(Math.random() * 16);
+            s.style.fontSize = size + 'px';
+            s.style.left = Math.random() * 100 + 'vw';
+            s.style.opacity = (0.6 + Math.random() * 0.4).toFixed(2);
+            const duration = 8 + Math.random() * 18;
+            s.style.animationDuration = `${duration}s, ${3 + Math.random() * 4}s`;
+            s.style.animationDelay = `${Math.random() * -20}s`;
+            s.textContent = chars[Math.floor(Math.random() * chars.length)];
+            snowContainer.appendChild(s);
+        }
+    }
 
     // basic HTML escape for values inserted into template
     function escapeHtml(str) {

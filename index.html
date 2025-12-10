@@ -7,12 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Escena decorativa: nieve y árbol (aria-hidden porque es decorativo) -->
+    <div id="snow" aria-hidden="true"></div>
+    <div class="scene" aria-hidden="true">
+        <!-- Árbol simple en SVG -->
+        <svg class="tree" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <g fill="none" fill-rule="evenodd">
+                <ellipse cx="100" cy="245" rx="40" ry="10" fill="#071018" opacity=".06"/>
+                <polygon points="100 20 60 100 140 100" fill="#0b5b2e"/>
+                <polygon points="100 70 45 150 155 150" fill="#0e6b34"/>
+                <polygon points="100 120 35 200 165 200" fill="#12783b"/>
+                <rect x="90" y="200" width="20" height="32" rx="3" fill="#6b3b1e"/>
+                <circle cx="100" cy="52" r="6" fill="#ffd54a"/>
+                <g fill="#ffd54a" opacity="0.95">
+                    <circle cx="78" cy="95" r="5"/>
+                    <circle cx="122" cy="95" r="4"/>
+                    <circle cx="90" cy="145" r="4"/>
+                    <circle cx="110" cy="165" r="5"/>
+                </g>
+            </g>
+        </svg>
+    </div>
+
     <header class="site-header">
         <div class="wrap header-inner">
             <div class="brand">
                 <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <rect x="1" y="1" width="22" height="22" rx="6" fill="#ff9900"></rect>
-                    <path d="M6 12h12M6 7h12" stroke="#fff" stroke-width="1.2" stroke-linecap="round"></path>
+                    <rect x="1" y="1" width="22" height="22" rx="6" fill="#ffb86b"></rect>
+                    <path d="M6 12h12M6 7h12" stroke="#111827" stroke-width="1.2" stroke-linecap="round"></path>
                 </svg>
                 <h1>Catálogo</h1>
             </div>
@@ -29,8 +51,8 @@
     <section class="hero">
         <div class="wrap hero-inner">
             <div>
-                <h2>Bienvenido al catálogo</h2>
-                <p class="lead">Explorá productos seleccionados. Tocá "Comprar en Amazon" para ir al sitio y completar la compra.</p>
+                <h2>Bienvenido al catálogo — Edición Navideña</h2>
+                <p class="lead">Seleccionamos productos ideales para regalar. Tocá "Comprar en Amazon" para ir al sitio y completar la compra.</p>
             </div>
             <div class="hero-cta">
                 <a class="btn primary" href="#productos">Ver productos</a>
@@ -38,7 +60,7 @@
         </div>
     </section>
 
-    <main class="wrap" id="productos">
+    <main class="wrap content" id="productos">
         <p class="hint">Para agregar/editar productos: abrí <code>main.js</code> y modificá el arreglo <code>products</code>.</p>
 
         <section class="grid" id="productGrid" aria-live="polite">
