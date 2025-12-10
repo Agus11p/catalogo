@@ -1,42 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const products = [
-        {
-            id: 1,
-            title: "Auriculares inalámbricos XYZ",
-            desc: "Cancelación de ruido, hasta 30h de batería y Bluetooth 5.2.",
-            price: "$59.99",
-            meta: "Envío desde Amazon",
-            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Auriculares+XYZ",
-            url: "https://www.amazon.com/s?k=auriculares+inalambricos"
-        },
-        {
-            id: 2,
-            title: "Smartwatch Modelo A1",
-            desc: "Rastreo de actividad, pulsómetro y resistencia 5ATM.",
-            price: "$79.90",
-            meta: "Oferta por tiempo limitado",
-            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Smartwatch+A1",
-            url: "https://www.amazon.com/s?k=smartwatch"
-        },
-        {
-            id: 3,
-            title: "Cafetera Espresso Compacta",
-            desc: "15 bar, depósito removible y soporte para cápsulas.",
-            price: "$129.00",
-            meta: "En stock",
-            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Cafetera+Espresso",
-            url: "https://www.amazon.com/s?k=cafetera+espresso"
-        },
-        {
-            id: 4,
-            title: "Mochila urbana 20L",
-            desc: "Resistente al agua, compartimento para laptop y diseño ergonómico.",
-            price: "$39.50",
-            meta: "Envío gratis",
-            img: "https://via.placeholder.com/800x450/0b2430/ffdba8?text=Mochila+20L",
-            url: "https://www.amazon.com/s?k=mochila+urbana"
-        }
-    ];
+    {
+        id: 1,
+        title: "Ventilador portátil SHYOSUCCE",
+        desc: "Ventilador de mano con velocidades ajustables, recargable y compacto. Ideal para el hogar o la oficina.",
+        price: "€24.99",
+        meta: "Envío desde Amazon",
+        img: "https://m.media-amazon.com/images/I/71z4vVmpMlL._AC_SL1500_.jpg", // Imagen principal del producto
+        url: "https://www.amazon.es/SHYOSUCCE-ventilador-velocidades-ajustables-taschenventilador/dp/B0DZX9MHKP?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=BORP5Q86X012&dib=eyJ2IjoiMSJ9.FkK7RXlxK9xJzbhE0XCdmreuSekcmzDu_Geklq9uJGDdgJL_lrnbR65wEJjs6n8zHh04ThV6ppLSG6Tc7Pzgzm63VVxa3mDjBI_ab9KEpkBvq4paqxMG-1OVdgIASKqATIz3OFhOdcuxKNc7ssPh4s9GBPYRQNuGFrbiolSB1k0vyQyHK40UOx8yp_WRU1dcxuVP0UfMdItpEspqaeDHnjhwN3vCIIhjzD32R2SVc0h1XtjriNx5S5-uwNXFu7jRtQmgzunJg6_SIjmwo15K3jZacINmwuJZOJr55EFRy10.Xft37I0fkqIbuivudqETAsrYoSWUInxXIl0PUSz-HWY&dib_tag=se&keywords=Gadgets%2Bpara%2Bel%2Bhogar&qid=1765332607&sprefix=gadgets%2Bpara%2Bel%2Bhogar%2Caps%2C333&sr=8-55&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=17a9d7935a27648f8cac6479378bb4a0&language=es_ES&ref_=as_li_ss_tl"
+    },
+];
+
 
     const grid = document.getElementById('productGrid');
     const year = document.getElementById('year');
