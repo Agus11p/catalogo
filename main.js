@@ -5,29 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Productos de ejemplo (3 ficticios) ---
   const products = [
     {
-      id: 1,
-      title: "Auriculares Pro Zeta",
-      desc: "Auriculares inalámbricos con cancelación activa de ruido, 30h de batería y carga rápida.",
-      price: "€89.99",
-      img: "https://images.unsplash.com/photo-1518444022748-2f7d7b9f7d6f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b0c0b2a7f4c8b0e6c9f3a2a7e4b5c6d",
-      url: "https://www.amazon.com/s?k=wireless+headphones"
-    },
-    {
-      id: 2,
-      title: "Smartwatch Nexus S",
-      desc: "Monitor de ritmo cardiaco, GPS integrado y esferas personalizables. Resistente al agua 5ATM.",
-      price: "€149.90",
-      img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d1b8a9f2f8b1d2c9c3e9a7b6c8d4e5f",
-      url: "https://www.amazon.com/s?k=smartwatch"
-    },
-    {
-      id: 3,
-      title: "Cafetera Barista Mini",
-      desc: "Cafetera espresso compacta 15 bar, depósito extraíble y compatible con cápsulas y café molido.",
-      price: "€129.00",
-      img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d",
-      url: "https://www.amazon.com/s?k=espresso+machine"
-    }
+  id: 3,
+  title: "Meta Quest – Realidad Mixta 512GB",
+  desc: "Visor de realidad mixta de nueva generación con gran almacenamiento, rendimiento superior y experiencias inmersivas.",
+  price: "€599.00",
+  img: "https://m.media-amazon.com/images/I/B09N24BHKQ._AC_SL1500_.jpg",
+  url: "https://www.amazon.es/Quest-512Gb-Realidad-mixta-revolucionaria/dp/B09N24BHKQ?tag=catalogo11p-21"
+},
+
   ];
 
   // DOM refs
