@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Productos de ejemplo (3 ficticios) ---
   const products = [
     {
-      id: 3,
+      id: 1,
       title: "Meta Quest – Realidad Mixta 512GB",
       desc: "Visor de realidad mixta de nueva generación con gran almacenamiento, rendimiento superior y experiencias inmersivas.",
       price: "€599.00",
