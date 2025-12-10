@@ -74,8 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const html = slice.map(p => `
-      <a class="card-link" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">
+      <a id="product-${p.id}" class="card-link" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">
         <article class="card" aria-labelledby="title-${p.id}">
+          <div class="card-badge">#${esc(p.id)}</div>
           <div class="card-media">
             <img loading="lazy" src="${esc(p.img)}" alt="${esc(p.title)}">
           </div>
