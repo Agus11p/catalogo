@@ -3,35 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Catálogo - Amazon</title>
+    <title>Catálogo de Productos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="snow" aria-hidden="true"></div>
-    <div class="scene" aria-hidden="true">
-        <svg class="tree" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-            <g fill="none" fill-rule="evenodd">
-                <ellipse cx="100" cy="245" rx="40" ry="10" fill="#071018" opacity=".06"/>
-                <polygon points="100 20 60 100 140 100" fill="#0b5b2e"/>
-                <polygon points="100 70 45 150 155 150" fill="#0e6b34"/>
-                <polygon points="100 120 35 200 165 200" fill="#12783b"/>
-                <rect x="90" y="200" width="20" height="32" rx="3" fill="#6b3b1e"/>
-                <circle cx="100" cy="52" r="6" fill="#ffd54a"/>
-                <g fill="#ffd54a" opacity="0.95">
-                    <circle cx="78" cy="95" r="5"/>
-                    <circle cx="122" cy="95" r="4"/>
-                    <circle cx="90" cy="145" r="4"/>
-                    <circle cx="110" cy="165" r="5"/>
-                </g>
-            </g>
-        </svg>
-    </div>
-
     <header class="site-header">
         <div class="wrap header-inner">
             <div class="brand">
-                <h1>Catálogo Navideño</h1>
+                <h1>Catálogo Profesional</h1>
             </div>
+
             <div class="header-actions">
                 <label class="search">
                     <input id="search" type="search" placeholder="Buscar productos..." aria-label="Buscar productos">
@@ -41,33 +22,17 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="wrap hero-inner">
-            <div>
-                <h2>Bienvenido al catálogo</h2>
-                <p class="lead">Tocá en la imagen para verla ampliada y en "Comprar en Amazon" para tu enlace de afiliado.</p>
-            </div>
-            <div class="hero-cta">
-                <a class="btn primary" href="#productos">Ver productos</a>
-            </div>
-        </div>
-    </section>
-
     <main class="wrap content" id="productos">
-        <p class="hint">Editá <code>main.js</code> para agregar más productos.</p>
-        <section class="grid" id="productGrid" aria-live="polite"></section>
-    </main>
+        <p class="hint">Para agregar/editar productos, abrí <code>main.js</code> y modificá el arreglo <code>products</code>.</p>
 
-    <!-- Modal de imagen -->
-    <div id="imgModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImg" alt="">
-        <div id="caption"></div>
-    </div>
+        <section class="grid" id="productGrid" aria-live="polite">
+            <!-- Las tarjetas se renderizan desde main.js -->
+        </section>
+    </main>
 
     <footer class="site-footer">
         <div class="wrap">
-            <small>© <span id="year"></span> Catálogo — Enlaces a Amazon</small>
+            <small>© <span id="year"></span> Catálogo — Enlaces de Afiliado</small>
         </div>
     </footer>
 
