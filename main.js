@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fijar modo oscuro
   try { document.documentElement.style.colorScheme = 'dark'; document.body.classList.add('dark'); } catch(e){}
 
-  // --- Productos de ejemplo (3 ficticios) ---
+  // --- Productos de ejemplo (3 ficticios + tu producto) ---
   const products = [
     {
       id: 1,
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadMoreBtn = document.getElementById('loadMore');
   const noResults = document.getElementById('noResults');
   const year = document.getElementById('year');
-  year.textContent = new Date().getFullYear();
+  if (year) year.textContent = new Date().getFullYear();
 
-  // Pagination config (useful si agregás muchos productos)
+  // Pagination config
   const PAGE_SIZE = 12;
   let offset = 0;
   let activeList = products.slice();
@@ -64,13 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if(reset){ offset = 0; grid.innerHTML = ''; }
     const slice = list.slice(offset, offset + PAGE_SIZE);
     if(slice.length === 0 && offset === 0){
-      noResults.hidden = false;
+      if (noResults) noResults.hidden = false;
       grid.innerHTML = '';
-      stats.textContent = `0 productos`;
-      loadMoreBtn.hidden = true;
+      if (stats) stats.textContent = `0 productos`;
+      if (loadMoreBtn) loadMoreBtn.hidden = true;
       return;
     } else {
-      noResults.hidden = true;
+      if (noResults) noResults.hidden = true;
     }
 
     const html = slice.map(p => `
@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
     grid.insertAdjacentHTML('beforeend', html);
     offset += slice.length;
-    stats.textContent = `${Math.min(offset, list.length)} de ${list.length} productos`;
-    loadMoreBtn.hidden = offset >= list.length;
+    if (stats) stats.textContent = `${Math.min(offset, list.length)} de ${list.length} productos`;
+    if (loadMoreBtn) loadMoreBtn.hidden = offset >= list.length;
   }
 
   // Debounce helper
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Search handler
   const doSearch = debounce(()=>{
-    const q = searchInput.value.trim();
+    const q = (searchInput && searchInput.value) ? searchInput.value.trim() : '';
     if(!q){ activeList = products.slice(); render(activeList, true); return; }
     const f = fuse.search(q, { limit: 1000 }).map(r => r.item);
     const results = f.length ? f : products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q.toLowerCase()));
@@ -113,10 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
     render(activeList, true);
   }, 180);
 
-  searchInput.addEventListener('input', doSearch);
-  clearBtn.addEventListener('click', () => { searchInput.value=''; activeList = products.slice(); render(activeList, true); searchInput.focus(); });
+  if (searchInput) searchInput.addEventListener('input', doSearch);
+  if (clearBtn) clearBtn.addEventListener('click', () => { if (searchInput) searchInput.value=''; activeList = products.slice(); render(activeList, true); if (searchInput) searchInput.focus(); });
 
-  loadMoreBtn.addEventListener('click', ()=> render(activeList, false));
+  if (loadMoreBtn) loadMoreBtn.addEventListener('click', ()=> render(activeList, false));
 
   // initial render
   render(activeList, true);
