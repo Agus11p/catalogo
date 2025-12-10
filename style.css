@@ -75,3 +75,14 @@ html,body{height:100%;margin:0;background:
 .close:hover{color:#ffb86b;}
 
 @media (max-width:720px){.hero-inner{flex-direction:column;align-items:flex-start}.search input{width:180px}.card-media{height:140px}}
+.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.card-link .card:hover { transform: translateY(-6px); box-shadow:0 30px 60px rgba(2,8,23,0.6);}
+.buy { cursor: pointer; }
+.card-link .buy:hover {
+    background: linear-gradient(180deg, #ffb86b, #e0892b);
+    box-shadow: 0 10px 30px rgba(224,137,43,0.2);
+}
