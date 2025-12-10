@@ -17,6 +17,7 @@
           <input id="search" type="search" placeholder="Buscar productos..." aria-label="Buscar productos">
           <button id="clearSearch" title="Borrar búsqueda" aria-label="Borrar búsqueda">&times;</button>
         </label>
+        <button id="themeToggle" aria-label="Cambiar tema" class="theme-toggle">🌙</button>
       </div>
     </div>
   </header>
@@ -26,6 +27,10 @@
     <section class="grid" id="productGrid" aria-live="polite">
       <!-- Las tarjetas se renderizan desde main.js -->
     </section>
+
+    <div class="load-more-wrap">
+      <button id="loadMore" class="buy" style="display:none">Cargar más</button>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -34,6 +39,8 @@
     </div>
   </footer>
 
+  <!-- Fuse.js para búsqueda fuzzy -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
   <script src="main.js" defer></script>
 </body>
 </html>
