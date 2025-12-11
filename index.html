@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TodoCompras</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FijateSiCompras – Ofertas Amazon</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>TodoCompras</h1>
-    </header>
+  <header class="header">
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-circle"><span>FS</span><div class="yellow-dot"></div></div>
+        <strong>FijateSiCompras</strong>
+      </a>
+      <div class="search-box">
+        <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="searchInput" placeholder="Buscar productos…" autocomplete="off">
+        <button id="clearSearch" class="clear">×</button>
+      </div>
+    </div>
+  </header>
 
-    <section class="products-container" id="productsContainer">
-        <!-- Los productos se cargan automáticamente desde main.js -->
-    </section>
+  <main class="container">
+    <h1 class="title">Las mejores ofertas seleccionadas para vos</h1>
 
-    <script src="main.js"></script>
+    <!-- Conversor + aviso -->
+    <div class="currency-wrapper">
+      <div class="currency-selector">
+        <span>Mostrar precios en:</span>
+        <select id="currencySelect">
+          <option value="EUR">Euro (€)</option>
+          <option value="USD">Dólar USA ($)</option>
+          <option value="ARS" selected>Pesos Argentinos ($)</option>
+          <option value="MXN">Pesos Mexicanos ($)</option>
+          <option value="CLP">Pesos Chilenos ($)</option>
+        </select>
+      </div>
+      <p class="disclaimer">Precio aproximado según cotización del día (10-dic-2025)</p>
+    </div>
+
+    <p class="stats" id="stats"></p>
+
+    <div id="productGrid" class="grid"></div>
+    <div id="noResults" class="no-results" hidden>No hay resultados</div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
