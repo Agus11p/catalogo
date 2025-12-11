@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Catálogo de productos recomendados con enlaces de afiliado Amazon España" />
-  <title>Catálogo de Ofertas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrimeSelect — Las mejores ofertas Amazon</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="wrap header-inner">
-      <div class="brand">
-        <strong class="logo">Catálogo</strong>
-      </div>
 
-      <div class="header-actions" role="search">
-        <label class="search" for="searchInput">
-          <input id="searchInput" type="search" placeholder="Buscar productos, marcas..." aria-label="Buscar productos">
-          <button id="clearSearch" class="clear" aria-label="Borrar búsqueda">✕</button>
-        </label>
+  <header class="header">
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-circle">
+          <span class="logo-text">PrimeSelect</span>
+        </div>
+      </a>
+
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="Buscar productos…" autocomplete="off">
+        <button id="clearSearch" class="clear-btn">✕</button>
       </div>
     </div>
   </header>
 
-  <main class="wrap main" id="main" role="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <h1 id="hero-title">Ofertas Recomendadas</h1>
-      <p class="lead">Explora los productos y haz clic en “Comprar en Amazon” para ir directamente a Amazon con tu enlace de afiliado.</p>
-    </section>
+  <main class="container main">
+    <div class="hero">
+      <h1>Las mejores ofertas seleccionadas para ti</h1>
+      <p>Productos verificados • Envío rápido • Enlaces directos Amazon</p>
+    </div>
 
-    <section class="controls wrap">
-      <div class="stats" id="stats" aria-live="polite">Cargando productos…</div>
-    </section>
+    <div class="stats" id="stats">Cargando productos…</div>
 
-    <section class="wrap product-area">
-      <div id="productGrid" class="grid" aria-live="polite"></div>
-
-      <div class="empty" id="noResults" hidden>No se encontraron productos. Prueba con otra búsqueda.</div>
-
-      <!-- Sentinel para scroll infinito -->
-      <div id="scrollSentinel" style="height:1px"></div>
-    </section>
+    <div id="productGrid" class="grid"></div>
+    <div id="noResults" class="no-results" hidden>No se encontraron productos</div>
+    <div id="scrollSentinel"></div>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="wrap">
-      <small>© <span id="year"></span> — Todos los enlaces son de afiliado Amazon</small>
+  <footer class="footer">
+    <div class="container">
+      <small>© 2025 PrimeSelect • Todos los enlaces contienen afiliación Amazon</small>
     </div>
   </footer>
 
-  <!-- Fuse.js para búsqueda difusa -->
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7/dist/fuse.min.js"></script>
   <script src="main.js" defer></script>
 </body>
 </html>
