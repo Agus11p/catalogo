@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FijateSiCompras – Las mejores ofertas Amazon</title>
+  <title>FijateSiCompras – Ofertas Amazon con descuentos reales</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,18 +17,17 @@
       </a>
       <div class="search-box">
         <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input type="text" id="searchInput" placeholder="Buscar productos…" autocomplete="off">
+        <input type="text" id="searchInput" placeholder="Buscar ofertas increíbles…" autocomplete="off">
         <button id="clearSearch" class="clear">×</button>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <h1 class="title">Las mejores ofertas seleccionadas para vos</h1>
+    <h1 class="title">Ofertas que no vas a creer</h1>
 
     <div class="currency-wrapper">
       <div class="currency-selector">
-              <p class="disclaimer">Afiliado de Amazon</p>
         <span>Precio en:</span>
         <select id="currencySelect">
           <option value="EUR">Euro (€)</option>
@@ -38,13 +37,13 @@
           <option value="CLP">Pesos Chilenos ($)</option>
         </select>
       </div>
-      <p class="disclaimer">Precio aproximado •dic-2025</p>
+      <p class="disclaimer">Precios aproximados • Actualizado 10-dic-2025</p>
     </div>
 
     <p class="stats" id="stats"></p>
 
     <div id="productGrid" class="grid"></div>
-    <div id="noResults" class="no-results" hidden>No encontramos resultados</div>
+    <div id="noResults" class="no-results" hidden>No hay resultados</div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
