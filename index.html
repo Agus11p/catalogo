@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FijateSiCompras – Ofertas Amazon</title>
+  <title>FijateSiCompras – Las mejores ofertas Amazon</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -25,25 +26,24 @@
   <main class="container">
     <h1 class="title">Las mejores ofertas seleccionadas para vos</h1>
 
-    <!-- Conversor + aviso -->
     <div class="currency-wrapper">
       <div class="currency-selector">
-        <span>Mostrar precios en:</span>
+        <span>Precio en:</span>
         <select id="currencySelect">
           <option value="EUR">Euro (€)</option>
-          <option value="USD">Dólar USA ($)</option>
+          <option value="USD">Dólar USA (US$)</option>
           <option value="ARS" selected>Pesos Argentinos ($)</option>
           <option value="MXN">Pesos Mexicanos ($)</option>
           <option value="CLP">Pesos Chilenos ($)</option>
         </select>
       </div>
-      <p class="disclaimer">Precio aproximado según cotización del día (10-dic-2025)</p>
+      <p class="disclaimer">Precio aproximado según cotización del día • 10-dic-2025</p>
     </div>
 
     <p class="stats" id="stats"></p>
 
     <div id="productGrid" class="grid"></div>
-    <div id="noResults" class="no-results" hidden>No hay resultados</div>
+    <div id="noResults" class="no-results" hidden>No encontramos resultados</div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
