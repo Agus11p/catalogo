@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
       priceEUR:45.90,
       img:"https://m.media-amazon.com/images/I/71qY9xR7tPL._AC_SL1500_.jpg",
       url:"https://www.amazon.es/Cecotec-InoxBlack-Tecnolog%C3%ADa-PerfectCook-Termostato/dp/B0BFB3Q7SD?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2SLEQQN0MK4SZ&dib=eyJ2IjoiMSJ9.OOgG_FyAQLT7ierlNiByMsd0GveQ1M9CM5vzKkT5d0Fjhb61ZYOPOZGoJJlicMbDPvIGiPV9db3T5DNmWz3vT-Fb_zuoHl3iB2P9K5uTVdft1y6-_3Aumk6MF6uATozcryz9MeFyt0o0GcXXYgfPOJEra7ZEHBXySvNrT-YarLe0BHITsp45SJirxZEzkUuz52zr6J-_rj5WP8rSHdZFYs8PLablf9SDi9U1ynniBLhjLoTy3DXd2l3Pdh-X9ramRTZZ0B-_U2n8JMflRoD93Pi55E-5eh1Sk3BvWXuwk4U.2L0zjb-hy-XK-0nbwSzHGi8jny3xqbu3Q7lQG8VqdIQ&dib_tag=se&keywords=tecnologia&qid=1765403460&s=mobile-apps&sprefix=tecnologia%2Cmobile-apps%2C341&sr=1-7-catcorr&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=9726e2371d5283b63cceb51b3846cadb&language=es_ES&ref_=as_li_ss_tl"
-    }
-        {
+    },
+    {
       id: 5,
       title: "Tapo C51A Cámara Vigilancia Wi-Fi Exterior 360°",
       desc: "Resolución 2K, visión nocturna color, detección IA personas, seguimiento inteligente, IP65 resistente al agua",
@@ -43,8 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   // Tasas reales dic-2025
+  // Tasas reales dic-2025
   const rates = { EUR:1, USD:1.09, ARS:1150, MXN:21.80, CLP:1025 };
   const symbols = { EUR:'€', USD:'US$', ARS:'$', MXN:'$', CLP:'$' };
+
+  // ← CON ESTO YA MUESTRA TODAS AUTOMÁTICAMENTE (orden del array)
+  const allowedIds = products.map(p => p.id);
 
   const grid = document.getElementById('productGrid');
   const stats = document.getElementById('stats');
