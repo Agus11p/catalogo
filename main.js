@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try { document.documentElement.style.colorScheme = 'dark'; document.body.classList.add('dark'); } catch(e){}
 
   // --- Productos (URLs EXACTAS mantenidas) ---
-  const products = [
+  const allProducts = [
     {
       id: 1,
       title: "Meta Quest - Realidad Mixta 512GB",
@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
       url: "https://www.amazon.es/Cecotec-InoxBlack-Tecnolog%C3%ADa-PerfectCook-Termostato/dp/B0BFB3Q7SD?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2SLEQQN0MK4SZ&dib=eyJ2IjoiMSJ9.OOgG_FyAQLT7ierlNiByMsd0GveQ1M9CM5vzKkT5d0Fjhb61ZYOPOZGoJJlicMbDPvIGiPV9db3T5DNmWz3vT-Fb_zuoHl3iB2P9K5uTVdft1y6-_3Aumk6MF6uATozcryz9MeFyt0o0GcXXYgfPOJEra7ZEHBXySvNrT-YarLe0BHITsp45SJirxZEzkUuz52zr6J-_rj5WP8rSHdZFYs8PLablf9SDi9U1ynniBLhjLoTy3DXd2l3Pdh-X9ramRTZZ0B-_U2n8JMflRoD93Pi55E-5eh1Sk3BvWXuwk4U.2L0zjb-hy-XK-0nbwSzHGi8jny3xqbu3Q7lQG8VqdIQ&dib_tag=se&keywords=tecnologia&qid=1765403460&s=mobile-apps&sprefix=tecnologia%2Cmobile-apps%2C341&sr=1-7-catcorr&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=9726e2371d5283b63cceb51b3846cadb&language=es_ES&ref_=as_li_ss_tl"
     },
   ];
+
+  // IDs que querés que aparezcan (editá esta lista según lo que pusiste)
+  const allowedIds = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50];
+
+  // usar sólo los productos con esos IDs
+  const products = allProducts.filter(p => allowedIds.includes(p.id));
 
   // DOM refs
   const grid = document.getElementById('productGrid');
