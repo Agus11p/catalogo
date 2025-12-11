@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Fijar modo oscuro
+  // Forzar modo oscuro
   try { document.documentElement.style.colorScheme = 'dark'; document.body.classList.add('dark'); } catch(e){}
 
-  // --- Productos de ejemplo (3 ficticios + tu producto) ---
+  // --- Productos (incluye la URL exacta solicitada) ---
   const products = [
     {
       id: 1,
@@ -14,23 +14,31 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 2,
-      title: "Cecotec Cecofry Full InoxBlack 5500 Pro – Freidora sin Aceite 5.5L",
-      desc: "Freidora de aire caliente de 5,5 L con 1700 W, tecnología PerfectCook, 8 modos preconfigurados, panel táctil digital y acabados en acero inoxidable. Cocina más sano sin perder sabor.",
-      price: "€45.90",
-     img: "https://m.media-amazon.com/images/I/71TfXYy3jzL._AC_SL1500_.jpg",
-      url: "https://www.amazon.es/Cecotec-InoxBlack-Tecnolog%C3%ADa-PerfectCook-Termostato/dp/B0BFB3Q7SD?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2SLEQQN0MK4SZ&dib=eyJ2IjoiMSJ9.OOgG_FyAQLT7ierlNiByMsd0GveQ1M9CM5vzKkT5d0Fjhb61ZYOPOZGoJJlicMbDPvIGiPV9db3T5DNmWz3vT-Fb_zuoHl3iB2P9K5uTVdft1y6-_3Aumk6MF6uATozcryz9MeFyt0o0GcXXYgfPOJEra7ZEHBXySvNrT-YarLe0BHITsp45SJirxZEzkUuz52zr6J-_rj5WP8rSHdZFYs8PLablf9SDi9U1ynniBLhjLoTy3DXd2l3Pdh-X9ramRTZZ0B-_U2n8JMflRoD93Pi55E-5eh1Sk3BvWXuwk4U.2L0zjb-hy-XK-0nbwSzHGi8jny3xqbu3Q7lQG8VqdIQ&dib_tag=se&keywords=tecnologia&qid=1765403460&s=mobile-apps&sprefix=tecnologia%2Cmobile-apps%2C341&sr=1-7-catcorr&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=9726e2371d5283b63cceb51b3846cadb&language=es_ES&ref_=as_li_ss_tl"
-    },
-    {
-      id: 5,
       title: "Pristar Etiquetadora Bluetooth P15",
       desc: "Mini impresora térmica de etiquetas con conexión Bluetooth, compatible con iOS y Android. Ideal para hogar, oficina y escuela. Modelo tejido negro.",
       price: "€29.99",
       img: "https://m.media-amazon.com/images/I/71E1aBzgI0L._AC_SL1500_.jpg",
       url: "https://www.amazon.es/gp/aw/d/B0CMHRC1FH?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=a127728558c2d2d4c6ba3b8b3ab1fb4e&hsa_cr_id=0&qid=1765403460&sr=1-3-1ee1b2e4-01d1-4cd0-b737-4c27ebfc8105&aref=9xQUUiJxMi&pd_rd_w=NqMV9&content-id=amzn1.sym.7dce7ea4-b064-4e7a-b891-491ac0e7a11e%3Aamzn1.sym.7dce7ea4-b064-4e7a-b891-491ac0e7a11e&pf_rd_p=7dce7ea4-b064-4e7a-b891-491ac0e7a11e&pf_rd_r=A4AKEG91ZGJC7ASQABQF&pd_rd_wg=HzrxZ&pd_rd_r=89657e59-8788-45ed-9ee4-c05501f579d9&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=3fd4c1e5a78ec5466a1907fff753c5d0&language=es_ES&ref_=as_li_ss_tl"
     },
+    {
+      id: 3,
+      title: "Cecotec Cecofry Full InoxBlack 5500 Pro – Freidora sin Aceite 5.5L",
+      desc: "Freidora de aire caliente de 5,5 L con 1700 W, tecnología PerfectCook y 8 modos preconfigurados.",
+      price: "€45.90",
+      img: "https://m.media-amazon.com/images/I/71TfXYy3jzL._AC_SL1500_.jpg",
+      url: "https://www.amazon.es/Cecotec-InoxBlack-Tecnolog%C3%ADa-PerfectCook-Termostato/dp/B0BFB3Q7SD?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2SLEQQN0MK4SZ&dib=eyJ2IjoiMSJ9.OOgG_FyAQLT7ierlNiByMsd0GveQ1M9CM5vzKkT5d0Fjhb61ZYOPOZGoJJlicMbDPvIGiPV9db3T5DNmWz3vT-Fb_zuoHl3iB2P9K5uTVdft1y6-_3Aumk6MF6uATozcryz9MeFyt0o0GcXXYgfPOJEra7ZEHBXySvNrT-YarLe0BHITsp45SJirxZEzkUuz52zr6J-_rj5WP8rSHdZFYs8PLablf9SDi9U1ynniBLhjLoTy3DXd2l3Pdh-X9ramRTZZ0B-_U2n8JMflRoD93Pi55E-5eh1Sk3BvWXuwk4U.2L0zjb-hy-XK-0nbwSzHGi8jny3xqbu3Q7lQG8VqdIQ&dib_tag=se&keywords=tecnologia&qid=1765403460&s=mobile-apps&sprefix=tecnologia%2Cmobile-apps%2C341&sr=1-7-catcorr&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=9726e2371d5283b63cceb51b3846cadb&language=es_ES&ref_=as_li_ss_tl"
+    },
+    {
+      id: 4,
+      title: "Smartwatch Nexus S",
+      desc: "Monitor de ritmo cardiaco, GPS integrado y esferas personalizables. Resistente al agua 5ATM.",
+      price: "€149.90",
+      img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4d1b8a9f2f8b1d2c9c3e9a7b6c8d4e5f",
+      url: "https://www.amazon.com/s?k=smartwatch"
+    }
   ];
 
-  // DOM refs
+  // DOM refs (aseguro IDs correctos)
   const grid = document.getElementById('productGrid');
   const stats = document.getElementById('stats');
   const searchInput = document.getElementById('searchInput');
@@ -62,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // util: escape minimal
   function esc(s){ return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  function render(list, reset = false){
+  // render: reset=true por defecto (corregido)
+  function render(list, reset = true){
     if (loading) return;
     loading = true;
     if(reset){ offset = 0; grid.innerHTML = ''; }
@@ -72,8 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (noResults) noResults.hidden = false;
       grid.innerHTML = '';
       if (stats) stats.textContent = `0 productos`;
-      // desconectar observer si no hay resultados
-      if (observer) observer.disconnect();
+      if (observer) { observer.disconnect(); observer = null; }
       loading = false;
       return;
     } else {
@@ -103,9 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (stats) stats.textContent = `Mostrando ${Math.min(offset, list.length)} de ${list.length} productos`;
 
-    // controlar sentinel: si ya cargó todo, desconectar; si no, asegurar observer activo
     if (offset >= list.length) {
-      if (observer) observer.disconnect();
+      if (observer) { observer.disconnect(); observer = null; }
     } else {
       ensureObserver();
     }
@@ -122,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Infinite scroll: IntersectionObserver carga siguiente página cuando sentinel entra en view
   function ensureObserver(){
     if (!sentinel) return;
-    if (observer) return; // ya activo
+    if (observer) return;
     observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry.isIntersecting && !loading) {
@@ -136,11 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Search handler
   const doSearch = debounce(()=>{
     const q = (searchInput && searchInput.value) ? searchInput.value.trim() : '';
-    if(!q){ activeList = products.slice(); render(activeList, true); return; }
+    if(!q){ activeList = products.slice(); if (observer) { observer.disconnect(); observer = null; } render(activeList, true); return; }
     const f = fuse.search(q, { limit: 1000 }).map(r => r.item);
     const results = f.length ? f : products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q.toLowerCase()));
     activeList = results;
-    // reset observer to react to new list
     if (observer) { observer.disconnect(); observer = null; }
     render(activeList, true);
   }, 180);
@@ -148,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (searchInput) searchInput.addEventListener('input', doSearch);
   if (clearBtn) clearBtn.addEventListener('click', () => { if (searchInput) searchInput.value=''; activeList = products.slice(); if (observer) { observer.disconnect(); observer = null; } render(activeList, true); if (searchInput) searchInput.focus(); });
 
-  // initial render + activate infinite scroll if needed
+  // initial render + activate infinite scroll
   render(activeList, true);
   ensureObserver();
 });
