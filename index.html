@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catálogo — Modo Oscuro</title>
+  <meta name="description" content="Catálogo de productos recomendados con enlaces de afiliado Amazon España" />
+  <title>Catálogo de Ofertas</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 </head>
 <body>
   <header class="site-header" role="banner">
     <div class="wrap header-inner">
-      <div class="brand" aria-hidden="false">
+      <div class="brand">
         <strong class="logo">Catálogo</strong>
-        <!-- tag eliminado para diseño limpio -->
       </div>
 
       <div class="header-actions" role="search">
         <label class="search" for="searchInput">
-          <input id="searchInput" type="search" placeholder="Buscar productos, marcas o características..." aria-label="Buscar productos">
+          <input id="searchInput" type="search" placeholder="Buscar productos, marcas..." aria-label="Buscar productos">
           <button id="clearSearch" class="clear" aria-label="Borrar búsqueda">✕</button>
         </label>
       </div>
@@ -25,31 +26,31 @@
 
   <main class="wrap main" id="main" role="main">
     <section class="hero" aria-labelledby="hero-title">
-      <h1 id="hero-title">Explora</h1>
-      <p class="lead">Seleccioná un producto y tocá "Comprar en Amazon" para completar la compra.</p>
+      <h1 id="hero-title">Ofertas Recomendadas</h1>
+      <p class="lead">Explora los productos y haz clic en “Comprar en Amazon” para ir directamente a Amazon con tu enlace de afiliado.</p>
     </section>
 
     <section class="controls wrap">
-      <div class="stats" id="stats" aria-live="polite"></div>
+      <div class="stats" id="stats" aria-live="polite">Cargando productos…</div>
     </section>
 
     <section class="wrap product-area">
       <div id="productGrid" class="grid" aria-live="polite"></div>
 
-      <div class="empty" id="noResults" hidden>Sin resultados. Probá otra búsqueda.</div>
+      <div class="empty" id="noResults" hidden>No se encontraron productos. Prueba con otra búsqueda.</div>
 
-      <!-- sentinel para scroll infinito -->
+      <!-- Sentinel para scroll infinito -->
       <div id="scrollSentinel" style="height:1px"></div>
     </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="wrap">
-      <small>© <span id="year"></span></small>
+      <small>© <span id="year"></span> — Todos los enlaces son de afiliado Amazon</small>
     </div>
   </footer>
 
-  <!-- Fuse.js (fuzzy search) -->
+  <!-- Fuse.js para búsqueda difusa -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
   <script src="main.js" defer></script>
 </body>
