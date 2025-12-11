@@ -8,9 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 1,
       title: "Meta Quest – Realidad Mixta 512GB",
       desc: "Visor de realidad mixta de nueva generación con gran almacenamiento, rendimiento superior y experiencias inmersivas.",
-      price: "€699.99",
-      img: "https://m.media-amazon.com/images/I/61nkctF66PL._AC_SX342_.jpg",
-      url: "https://www.amazon.es/Quest-512Gb-Realidad-mixta-revolucionaria/dp/B09N24BHKQ?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2SLEQQN0MK4SZ&dib=eyJ2IjoiMSJ9.OOgG_FyAQLT7ierlNiByMsd0GveQ1M9CM5vzKkT5d0Fjhb61ZYOPOZGoJJlicMbDPvIGiPV9db3T5DNmWz3vT-Fb_zuoHl3iB2P9K5uTVdft1y6-_3Aumk6MF6uATozcryz9MeFyt0o0GcXXYgfPOJEra7ZEHBXySvNrT-YarLe0BHITsp45SJirxZEzkUuz52zr6J-_rj5WP8rSHdZFYs8PLablf9SDi9U1ynniBLhjLoTy3DXd2l3Pdh-X9ramRTZZ0B-_U2n8JMflRoD93Pi55E-5eh1Sk3BvWXuwk4U.2L0zjb-hy-XK-0nbwSzHGi8jny3xqbu3Q7lQG8VqdIQ&dib_tag=se&keywords=tecnologia&qid=1765403460&s=mobile-apps&sprefix=tecnologia%2Cmobile-apps%2C341&sr=1-4-catcorr&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=94989074a6aa7215135241816f1b3e1c&language=es_ES&ref_=as_li_ss_tl"
+      price: "€599.00",
+      img: "https://m.media-amazon.com/images/I/B09N24BHKQ._AC_SL1500_.jpg",
+      url: "https://www.amazon.es/Quest-512Gb-Realidad-mixta-revolucionaria/dp/B09N24BHKQ?tag=catalogo11p-21"
+    },
+    {
+      id: 5,
+      title: "Pristar Etiquetadora Bluetooth P15",
+      desc: "Mini impresora térmica de etiquetas con conexión Bluetooth, compatible con iOS y Android. Ideal para hogar, oficina y escuela. Modelo tejido negro.",
+      price: "€XX.XX",
+      img: "https://m.media-amazon.com/images/I/71E1aBzgI0L._AC_SL1500_.jpg",
+      url: "https://www.amazon.es/gp/aw/d/B0CMHRC1FH?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=a127728558c2d2d4c6ba3b8b3ab1fb4e&hsa_cr_id=0&qid=1765403460&sr=1-3-1ee1b2e4-01d1-4cd0-b737-4c27ebfc8105&aref=9xQUUiJxMi&pd_rd_w=NqMV9&content-id=amzn1.sym.7dce7ea4-b064-4e7a-b891-491ac0e7a11e%3Aamzn1.sym.7dce7ea4-b064-4e7a-b891-491ac0e7a11e&pf_rd_p=7dce7ea4-b064-4e7a-b891-491ac0e7a11e&pf_rd_r=A4AKEG91ZGJC7ASQABQF&pd_rd_wg=HzrxZ&pd_rd_r=89657e59-8788-45ed-9ee4-c05501f579d9&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=3fd4c1e5a78ec5466a1907fff753c5d0&language=es_ES&ref_=as_li_ss_tl"
     },
     {
       id: 2,
