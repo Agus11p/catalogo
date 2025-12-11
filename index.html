@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catálogo Profesional — Modo Oscuro</title>
+  <title>Catálogo — Modo Oscuro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div class="wrap header-inner">
       <div class="brand" aria-hidden="false">
         <strong class="logo">Catálogo</strong>
-        <span class="tag">Profesional · Modo oscuro</span>
+        <!-- tag eliminado para diseño limpio -->
       </div>
 
       <div class="header-actions" role="search">
@@ -25,8 +25,8 @@
 
   <main class="wrap main" id="main" role="main">
     <section class="hero" aria-labelledby="hero-title">
-      <h1 id="hero-title">Catálogo profesional</h1>
-      <p class="lead">Explora productos seleccionados. Toca "Comprar en Amazon" para ir al sitio y completar la compra.</p>
+      <h1 id="hero-title">Explora</h1>
+      <p class="lead">Seleccioná un producto y tocá "Comprar en Amazon" para completar la compra.</p>
     </section>
 
     <section class="controls wrap">
@@ -38,15 +38,14 @@
 
       <div class="empty" id="noResults" hidden>Sin resultados. Probá otra búsqueda.</div>
 
-      <div class="load-more-wrap">
-        <button id="loadMore" class="btn btn-cta" hidden>Cargar más</button>
-      </div>
+      <!-- sentinel para scroll infinito -->
+      <div id="scrollSentinel" style="height:1px"></div>
     </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="wrap">
-      <small>© <span id="year"></span> Catálogo — Enlaces a Amazon</small>
+      <small>© <span id="year"></span></small>
     </div>
   </footer>
 

@@ -10,24 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: "Visor de realidad mixta de nueva generación con gran almacenamiento, rendimiento superior y experiencias inmersivas.",
       price: "€599.00",
       img: "https://m.media-amazon.com/images/I/B09N24BHKQ._AC_SL1500_.jpg",
-      url: "https://www.amazon.es/Quest-512Gb-Realidad-mixta-revolucionaria/dp/B09N24BHKQ?tag=catalogo11p-21"
+      url: "https://www.amazon.es/Quest-512Gb-Realidad-mixta-revolucionaria/dp/B09N24BHKQ?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2SLEQQN0MK4SZ&dib=eyJ2IjoiMSJ9.OOgG_FyAQLT7ierlNiByMsd0GveQ1M9CM5vzKkT5d0Fjhb61ZYOPOZGoJJlicMbDPvIGiPV9db3T5DNmWz3vT-Fb_zuoHl3iB2P9K5uTVdft1y6-_3Aumk6MF6uATozcryz9MeFyt0o0GcXXYgfPOJEra7ZEHBXySvNrT-YarLe0BHITsp45SJirxZEzkUuz52zr6J-_rj5WP8rSHdZFYs8PLablf9SDi9U1ynniBLhjLoTy3DXd2l3Pdh-X9ramRTZZ0B-_U2n8JMflRoD93Pi55E-5eh1Sk3BvWXuwk4U.2L0zjb-hy-XK-0nbwSzHGi8jny3xqbu3Q7lQG8VqdIQ&dib_tag=se&keywords=tecnologia&qid=1765403460&s=mobile-apps&sprefix=tecnologia%2Cmobile-apps%2C341&sr=1-4-catcorr&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=0904e2dc545dc679a8d8fc864561a06a&language=es_ES&ref_=as_li_ss_tl"
     },
     {
-      id: 2,
+      id: 5,
       title: "Pristar Etiquetadora Bluetooth P15",
       desc: "Mini impresora térmica de etiquetas con conexión Bluetooth, compatible con iOS y Android. Ideal para hogar, oficina y escuela. Modelo tejido negro.",
       price: "€XX.XX",
       img: "https://m.media-amazon.com/images/I/71E1aBzgI0L._AC_SL1500_.jpg",
       url: "https://www.amazon.es/gp/aw/d/B0CMHRC1FH?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=a127728558c2d2d4c6ba3b8b3ab1fb4e&hsa_cr_id=0&qid=1765403460&sr=1-3-1ee1b2e4-01d1-4cd0-b737-4c27ebfc8105&aref=9xQUUiJxMi&pd_rd_w=NqMV9&content-id=amzn1.sym.7dce7ea4-b064-4e7a-b891-491ac0e7a11e%3Aamzn1.sym.7dce7ea4-b064-4e7a-b891-491ac0e7a11e&pf_rd_p=7dce7ea4-b064-4e7a-b891-491ac0e7a11e&pf_rd_r=A4AKEG91ZGJC7ASQABQF&pd_rd_wg=HzrxZ&pd_rd_r=89657e59-8788-45ed-9ee4-c05501f579d9&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=3fd4c1e5a78ec5466a1907fff753c5d0&language=es_ES&ref_=as_li_ss_tl"
     },
-    {
-      id: 3,
-      title: "Cafetera Barista Mini",
-      desc: "Cafetera espresso compacta 15 bar, depósito extraíble y compatible con cápsulas y café molido.",
-      price: "€129.00",
-      img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d",
-      url: "https://www.amazon.com/s?k=espresso+machine"
-    }
   ];
 
   // DOM refs
@@ -35,15 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const stats = document.getElementById('stats');
   const searchInput = document.getElementById('searchInput');
   const clearBtn = document.getElementById('clearSearch');
-  const loadMoreBtn = document.getElementById('loadMore');
   const noResults = document.getElementById('noResults');
   const year = document.getElementById('year');
+  const sentinel = document.getElementById('scrollSentinel');
   if (year) year.textContent = new Date().getFullYear();
 
-  // Pagination config
+  // Pagination / infinite scroll config
   const PAGE_SIZE = 12;
   let offset = 0;
   let activeList = products.slice();
+  let loading = false;
+  let observer = null;
 
   // Fuse.js init (fuzzy search)
   const fuse = new Fuse(products, {
@@ -60,14 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // util: escape minimal
   function esc(s){ return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  function render(list, reset = true){
+  function render(list, reset = false){
+    if (loading) return;
+    loading = true;
     if(reset){ offset = 0; grid.innerHTML = ''; }
     const slice = list.slice(offset, offset + PAGE_SIZE);
+
     if(slice.length === 0 && offset === 0){
       if (noResults) noResults.hidden = false;
       grid.innerHTML = '';
       if (stats) stats.textContent = `0 productos`;
-      if (loadMoreBtn) loadMoreBtn.hidden = true;
+      // desconectar observer si no hay resultados
+      if (observer) observer.disconnect();
+      loading = false;
       return;
     } else {
       if (noResults) noResults.hidden = true;
@@ -93,14 +92,37 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
     grid.insertAdjacentHTML('beforeend', html);
     offset += slice.length;
-    if (stats) stats.textContent = `${Math.min(offset, list.length)} de ${list.length} productos`;
-    if (loadMoreBtn) loadMoreBtn.hidden = offset >= list.length;
+
+    if (stats) stats.textContent = `Mostrando ${Math.min(offset, list.length)} de ${list.length} productos`;
+
+    // controlar sentinel: si ya cargó todo, desconectar; si no, asegurar observer activo
+    if (offset >= list.length) {
+      if (observer) observer.disconnect();
+    } else {
+      ensureObserver();
+    }
+
+    loading = false;
   }
 
   // Debounce helper
-  function debounce(fn, wait=200){
+  function debounce(fn, wait=180){
     let t;
     return (...args)=>{ clearTimeout(t); t = setTimeout(()=>fn(...args), wait); };
+  }
+
+  // Infinite scroll: IntersectionObserver carga siguiente página cuando sentinel entra en view
+  function ensureObserver(){
+    if (!sentinel) return;
+    if (observer) return; // ya activo
+    observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting && !loading) {
+          render(activeList, false);
+        }
+      }
+    }, { root: null, rootMargin: '400px', threshold: 0 });
+    observer.observe(sentinel);
   }
 
   // Search handler
@@ -110,14 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const f = fuse.search(q, { limit: 1000 }).map(r => r.item);
     const results = f.length ? f : products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q.toLowerCase()));
     activeList = results;
+    // reset observer to react to new list
+    if (observer) { observer.disconnect(); observer = null; }
     render(activeList, true);
   }, 180);
 
   if (searchInput) searchInput.addEventListener('input', doSearch);
-  if (clearBtn) clearBtn.addEventListener('click', () => { if (searchInput) searchInput.value=''; activeList = products.slice(); render(activeList, true); if (searchInput) searchInput.focus(); });
+  if (clearBtn) clearBtn.addEventListener('click', () => { if (searchInput) searchInput.value=''; activeList = products.slice(); if (observer) { observer.disconnect(); observer = null; } render(activeList, true); if (searchInput) searchInput.focus(); });
 
-  if (loadMoreBtn) loadMoreBtn.addEventListener('click', ()=> render(activeList, false));
-
-  // initial render
+  // initial render + activate infinite scroll if needed
   render(activeList, true);
+  ensureObserver();
 });
