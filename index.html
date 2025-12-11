@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PrimeSelect — Las mejores ofertas Amazon</title>
+  <title>FijateSiCompras — Las mejores ofertas Amazon</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -14,35 +13,30 @@
     <div class="container">
       <a href="#" class="logo">
         <div class="logo-circle">
-          <span class="logo-text">PrimeSelect</span>
+          <span>FS</span>
+          <div class="yellow-dot"></div>
         </div>
+        <strong class="logo-text">FijateSiCompras</strong>
       </a>
 
-      <div class="search-box">
-        <input type="search" id="searchInput" placeholder="Buscar productos…" autocomplete="off">
-        <button id="clearSearch" class="clear-btn">✕</button>
+      <div class="search-wrapper">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input type="text" id="searchInput" placeholder="Busca cualquier producto…" autocomplete="off">
+          <button id="clearSearch" class="clear-btn" aria-label="Limpiar">✕</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <main class="container main">
-    <div class="hero">
-      <h1>Las mejores ofertas seleccionadas para ti</h1>
-      <p>Productos verificados • Envío rápido • Enlaces directos Amazon</p>
-    </div>
-
-    <div class="stats" id="stats">Cargando productos…</div>
+  <main class="container">
+    <h1 class="hero">Ofertas seleccionadas especialmente para ti</h1>
+    <p class="stats" id="stats"></p>
 
     <div id="productGrid" class="grid"></div>
-    <div id="noResults" class="no-results" hidden>No se encontraron productos</div>
+    <div id="noResults" class="no-results" hidden>No encontramos nada con esa búsqueda</div>
     <div id="scrollSentinel"></div>
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <small>© 2025 PrimeSelect • Todos los enlaces contienen afiliación Amazon</small>
-    </div>
-  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7/dist/fuse.min.js"></script>
   <script src="main.js" defer></script>
