@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Forzar modo oscuro
+  // Forzar modo oscuro (no tocar)
   try { document.documentElement.style.colorScheme = 'dark'; document.body.classList.add('dark'); } catch(e){}
 
-  // --- Productos (URLs EXACTAS mantenidas) ---
+  // --- Lista maestra de productos (NO tocar) ---
   const allProducts = [
     {
       id: 1,
@@ -27,14 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
       price: "€45.90",
       img: "https://m.media-amazon.com/images/I/71TfXYy3jzL._AC_SL1500_.jpg",
       url: "https://www.amazon.es/Cecotec-InoxBlack-Tecnolog%C3%ADa-PerfectCook-Termostato/dp/B0BFB3Q7SD?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2SLEQQN0MK4SZ&dib=eyJ2IjoiMSJ9.OOgG_FyAQLT7ierlNiByMsd0GveQ1M9CM5vzKkT5d0Fjhb61ZYOPOZGoJJlicMbDPvIGiPV9db3T5DNmWz3vT-Fb_zuoHl3iB2P9K5uTVdft1y6-_3Aumk6MF6uATozcryz9MeFyt0o0GcXXYgfPOJEra7ZEHBXySvNrT-YarLe0BHITsp45SJirxZEzkUuz52zr6J-_rj5WP8rSHdZFYs8PLablf9SDi9U1ynniBLhjLoTy3DXd2l3Pdh-X9ramRTZZ0B-_U2n8JMflRoD93Pi55E-5eh1Sk3BvWXuwk4U.2L0zjb-hy-XK-0nbwSzHGi8jny3xqbu3Q7lQG8VqdIQ&dib_tag=se&keywords=tecnologia&qid=1765403460&s=mobile-apps&sprefix=tecnologia%2Cmobile-apps%2C341&sr=1-7-catcorr&th=1&linkCode=ll1&tag=catalogo11p-21&linkId=9726e2371d5283b63cceb51b3846cadb&language=es_ES&ref_=as_li_ss_tl"
-    },
+    }
   ];
 
-  // IDs que querés que aparezcan (editá esta lista según lo que pusiste)
+  // --- SOLO editar esta línea: poné aquí los IDs que querés que aparezcan ---
+  // Ejemplo: [1,2] mostrará solo Meta Quest e Pristar; agregá nuevos IDs cuando crees productos.
   const allowedIds = [1,2,3];
 
-  // usar sólo los productos con esos IDs
-  const products = allProducts.filter(p => allowedIds.includes(p.id));
+  // Construir la lista 'products' exactamente en el orden de allowedIds (filtra IDs inexistentes)
+  const products = allowedIds.map(id => allProducts.find(p => p.id === id)).filter(Boolean);
 
   // DOM refs
   const grid = document.getElementById('productGrid');
@@ -53,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let loading = false;
   let observer = null;
 
-  // Fuse.js
-  const fuse = new Fuse(products, {
+  // Fuse.js (se inicializa con la lista filtrada)
+  const fuse = new Fuse(activeList, {
     keys: [{ name: 'title', weight: 0.75 }, { name: 'desc', weight: 0.25 }],
     threshold: 0.35,
     distance: 200,
@@ -64,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function esc(s){ return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  // render (reset por defecto)
   function render(list, reset = true){
     try {
       if (loading) return;
@@ -129,15 +129,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const doSearch = debounce(()=>{
     const q = (searchInput && searchInput.value) ? searchInput.value.trim() : '';
-    if (!q) { activeList = products.slice(); if (observer) { observer.disconnect(); observer = null; } render(activeList, true); return; }
+    if (!q) {
+      activeList = products.slice();
+      // reinit fuse with base list
+      fuse.setCollection(activeList);
+      if (observer) { observer.disconnect(); observer = null; }
+      render(activeList, true);
+      return;
+    }
     const f = fuse.search(q, { limit: 1000 }).map(r => r.item);
     activeList = f.length ? f : products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q.toLowerCase()));
+    fuse.setCollection(activeList);
     if (observer) { observer.disconnect(); observer = null; }
     render(activeList, true);
   }, 180);
 
   if (searchInput) searchInput.addEventListener('input', doSearch);
-  if (clearBtn) clearBtn.addEventListener('click', () => { if (searchInput) searchInput.value=''; activeList = products.slice(); if (observer) { observer.disconnect(); observer = null; } render(activeList, true); if (searchInput) searchInput.focus(); });
+  if (clearBtn) clearBtn.addEventListener('click', () => { if (searchInput) searchInput.value=''; activeList = products.slice(); fuse.setCollection(activeList); if (observer) { observer.disconnect(); observer = null; } render(activeList, true); if (searchInput) searchInput.focus(); });
 
   // initial
   render(activeList, true);
