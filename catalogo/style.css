@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: #0f1115;
+  color: #fff;
+}
+
+.header {
+  text-align: center;
+  padding: 30px 15px;
+  background: linear-gradient(135deg, #1f2937, #020617);
+}
+
+.header h1 {
+  font-size: 2.2rem;
+}
+
+.header p {
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+.currency-selector {
+  margin-top: 15px;
+}
+
+.currency-selector button {
+  margin: 5px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background: #1e293b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.currency-selector button:hover {
+  background: #334155;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.product-card {
+  background: #020617;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  transition: transform .3s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card.hot {
+  border: 2px solid #22c55e;
+}
+
+.product-image {
+  position: relative;
+}
+
+.image-placeholder {
+  height: 180px;
+  background: linear-gradient(135deg, #1e293b, #020617);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  opacity: .7;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #22c55e;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: .75rem;
+  font-weight: bold;
+}
+
+.product-card h3 {
+  margin: 15px 0 8px;
+}
+
+.discount {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.no-discount {
+  opacity: .6;
+}
+
+.price {
+  font-size: 1.4rem;
+  margin: 10px 0;
+}
+
+.approx {
+  font-size: .75rem;
+  opacity: .6;
+}
+
+.buy-btn {
+  display: block;
+  text-align: center;
+  background: #2563eb;
+  color: #fff;
+  padding: 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buy-btn:hover {
+  background: #1d4ed8;
+}
+
+.currency-note {
+  text-align: center;
+  opacity: .6;
+  padding-bottom: 20px;
+}
+
+.instagram {
+  text-align: center;
+  padding: 30px;
+  background: #020617;
+}
+
+.instagram a {
+  color: #22c55e;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 15px;
+  font-size: .75rem;
+  opacity: .5;
+}
