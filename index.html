@@ -2,51 +2,45 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FijateSiCompras – Ofertas Amazon con descuentos reales</title>
+  <title>Fijate si Comprás | Mejores Ofertas Amazon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Encontramos las mejores ofertas reales de Amazon. Precios aproximados, descuentos activos y links oficiales.">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header class="header">
-    <div class="container">
-      <a href="#" class="logo">
-        <div class="logo-circle"><span>FS</span><div class="yellow-dot"></div></div>
-        <strong>FijateSiCompras</strong>
-      </a>
-      <div class="search-box">
-        <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input type="text" id="searchInput" placeholder="Buscar ofertas increíbles…" autocomplete="off">
-        <button id="clearSearch" class="clear">×</button>
-      </div>
-    </div>
-  </header>
+<header class="header">
+  <h1>🛒 Fijate si Comprás</h1>
+  <p>Buscamos ofertas reales para que compres mejor</p>
 
-  <main class="container">
-    <h1 class="title">Ofertas que no vas a creer</h1>
+  <div class="currency-selector">
+    <button data-currency="USD">USD</button>
+    <button data-currency="ARS">ARS</button>
+    <button data-currency="EUR">EUR</button>
+  </div>
+</header>
 
-    <div class="currency-wrapper">
-      <div class="currency-selector">
-        <span>Precio en:</span>
-        <select id="currencySelect">
-          <option value="EUR">Euro (€)</option>
-          <option value="USD">Dólar USA (US$)</option>
-          <option value="ARS" selected>Pesos Argentinos ($)</option>
-          <option value="MXN">Pesos Mexicanos ($)</option>
-          <option value="CLP">Pesos Chilenos ($)</option>
-        </select>
-      </div>
-      <p class="disclaimer">Precios aproximados • Actualizado 10-dic-2025</p>
-    </div>
+<main>
+  <section id="products" class="products"></section>
 
-    <p class="stats" id="stats"></p>
+  <p id="currency-note" class="currency-note"></p>
 
-    <div id="productGrid" class="grid"></div>
-    <div id="noResults" class="no-results" hidden>No hay resultados</div>
-  </main>
+  <section class="instagram">
+    <p>
+      📩 ¿Querés un <strong>código de descuento extra</strong>?
+      <br>
+      Escribinos en Instagram:
+    </p>
+    <a href="https://www.instagram.com/fijate_si_compras/" target="_blank">
+      @fijate_si_compras
+    </a>
+  </section>
+</main>
 
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
-  <script src="main.js" defer></script>
+<footer class="footer">
+  <p>Precios aproximados. Amazon y su logo son marcas registradas.</p>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>
